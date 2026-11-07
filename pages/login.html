@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sushi Express | Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        sushi: { red: '#D92525', dark: '#1A1A1A', light: '#F8F9FA' }
+                    }
+                }
+            }
+        }
+    </script> 31564         
+</head>
+<body class="bg-sushi-dark min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <!-- Fundo decorativo -->
+    <div class="absolute inset-0 z-0 opacity-20">
+        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Fundo Sushi" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Contentor Principal -->
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative z-10">
+        <div class="text-center mb-8">
+            <a href="index.html" class="inline-flex items-center gap-2 mb-4 hover:scale-105 transition-transform">
+                <i class="fa-solid fa-fish text-sushi-red text-3xl"></i>
+                <h1 class="text-3xl font-bold tracking-wider text-sushi-dark">SUSHI<span class="text-sushi-red">EXPRESS</span></h1>
+            </a>
+            <p id="form-subtitle" class="text-gray-500">Inicie sessão para fazer o seu pedido</p>
+        </div>
+
+        <!-- Formulário de Login -->
+        <form id="login-form" class="space-y-5" onsubmit="fazerLogin(event)">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <div class="relative">
+                    <i class="fa-solid fa-envelope absolute left-3 top-3 text-gray-400"></i>
+                    <input type="email" required class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sushi-red focus:border-sushi-red outline-none transition-all" placeholder="o.seu@email.com" id="login-email">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Palavra-passe</label>
+                <div class="relative">
+                    <i class="fa-solid fa-lock absolute left-3 top-3 text-gray-400"></i>
+                    <input type="password" required class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sushi-red focus:border-sushi-red outline-none transition-all" placeholder="••••••••" id="login-senha">
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-sushi-red hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-colors shadow-md">
+                Entrar
+            </button>
+            <p class="text-center text-sm text-gray-600 mt-4">
+                Não tem conta? <button type="button" onclick="toggleForm('register')" class="text-sushi-red font-semibold hover:underline">Registar-se</button>
+            </p>
+        </form>
+
+        <!-- Formulário de Registo (Oculto por defeito) -->
+        <form id="register-form" class="space-y-5 hidden" onsubmit="cadastrarUsuario(event)">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                <div class="relative">
+                    <i class="fa-solid fa-user absolute left-3 top-3 text-gray-400"></i>
+                    <input type="text" required class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sushi-red focus:border-sushi-red outline-none transition-all" placeholder="O seu nome" id="reg-nome">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <div class="relative">
+                    <i class="fa-solid fa-envelope absolute left-3 top-3 text-gray-400"></i>
+                    <input type="email" required class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sushi-red focus:border-sushi-red outline-none transition-all" placeholder="o.seu@email.com" id="reg-email">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Palavra-passe</label>
+                <div class="relative">
+                    <i class="fa-solid fa-lock absolute left-3 top-3 text-gray-400"></i>
+                    <input type="password" required class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sushi-red focus:border-sushi-red outline-none transition-all" placeholder="Crie uma palavra-passe" id="reg-senha">
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-sushi-dark hover:bg-gray-800 text-white font-bold py-3 rounded-lg transition-colors shadow-md">
+                Criar Conta
+            </button>
+            <p class="text-center text-sm text-gray-600 mt-4">
+                Já tem conta? <button type="button" onclick="toggleForm('login')" class="text-sushi-red font-semibold hover:underline">Iniciar sessão</button>
+            </p>
+        </form>
+    </div>
+
+    <script>
+        function toggleForm(type) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const subtitle = document.getElementById('form-subtitle');
+
+            if (type === 'register') {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                subtitle.textContent = 'Crie uma conta para aproveitar as nossas ofertas';
+            } else {
+                registerForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+                subtitle.textContent = 'Inicie sessão para fazer o seu pedido';
+            }
+        }
+
+        async function cadastrarUsuario(event) {
+            event.preventDefault(); // Evita o recarregamento da página
+            
+            // Pegue os valores dos inputs (certifique-se de adicionar estes IDs no HTML)
+            const nome = document.getElementById('reg-nome').value;
+            const email = document.getElementById('reg-email').value;
+            const senha = document.getElementById('reg-senha').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/usuarios/cadastro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Cadastro realizado com sucesso! Faça login.');
+                    toggleForm('login');
+                } else {
+                    alert('Erro: ' + data.erro);
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                alert('Erro ao conectar com o servidor.');
+            }
+        }
+
+        async function fazerLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const senha = document.getElementById('login-senha').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/usuarios/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Salva o usuário no armazenamento do navegador
+                    localStorage.setItem('usuario', JSON.stringify(data.usuario));
+                    alert('Bem-vindo, ' + data.usuario.nome + '!');
+                    window.location.href = 'index.html'; 
+                } else {
+                    alert('Erro: ' + data.erro);
+                }
+            } catch (error) {
+                console.error('Erro no login:', error);
+                alert('Erro ao conectar com o servidor.');
+            }
+        }
+    </script>
+</body>
+</html>

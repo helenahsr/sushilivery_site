@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sushi Express | Delivery</title>
+    <!-- Tailwind CSS para Estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+    
+    <script>
+        // Configuração de cores do Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        sushi: {
+                            red: '#D92525',
+                            dark: '#1A1A1A',
+                            light: '#F8F9FA'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-sushi-light text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="bg-sushi-dark text-white fixed w-full top-0 z-30 shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-fish text-sushi-red text-2xl"></i>
+                <h1 class="text-2xl font-bold tracking-wider">SUSHI<span class="text-sushi-red">EXPRESS</span></h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-6 font-medium">
+                <a href="#" class="hover:text-sushi-red transition-colors">Início</a>
+                <a href="#cardapio" class="hover:text-sushi-red transition-colors">Cardápio</a>
+                <a href="#sobre" class="hover:text-sushi-red transition-colors">Sobre</a>
+            </nav>
+
+            <div>
+                <button onclick="toggleCart()" class="relative text-white hover:text-sushi-red transition-colors p-2">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span id="cart-count" class="absolute top-0 right-0 -mt-1 -mr-1 bg-sushi-red text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow">0</span>
+                </button>
+                <a href="pages/login.html" class="text-white hover:text-sushi-red transition-colors p-2 mr-2">
+                    <i class="fa-solid fa-user text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="mt-16 bg-sushi-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Sushi Background" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 py-24 md:py-32 relative z-10 flex flex-col items-center text-center">
+            <h2 class="text-4xl md:text-6xl font-bold mb-4">O Melhor Sushi da Cidade</h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">Ingredientes frescos, preparados na hora e entregues direto na sua porta. Experimente a verdadeira arte do sushi.</p>
+            <a href="#cardapio" class="bg-sushi-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition-colors transform hover:scale-105 duration-200 shadow-lg">
+                Fazer Pedido Agora
+            </a>
+        </div>
+    </section>
+
+    <!-- Seção do Cardápio -->
+    <main id="cardapio" class="container mx-auto px-4 py-16 flex-grow">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-sushi-dark mb-2">Nosso Cardápio</h2>
+            <div class="w-24 h-1 bg-sushi-red mx-auto rounded"></div>
+            <p class="mt-4 text-gray-600">Escolha suas peças favoritas e monte seu combo.</p>
+        </div>
+
+        <!-- Grid de Produtos (Preenchido pelo JS) -->
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Os itens serão renderizados aqui pelo JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="sobre" class="bg-sushi-dark text-gray-400 py-10 mt-auto">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4 flex items-center justify-center md:justify-start gap-2">
+                    <i class="fa-solid fa-fish text-sushi-red"></i> Sushi Express
+                </h3>
+                <p class="text-sm">Levando a melhor experiência da culinária oriental até você com rapidez e qualidade.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Horário de Funcionamento</h4>
+                <p class="text-sm mb-2">Seg - Dom: 18h às 23:30h</p>
+                <p class="text-sm">Delivery Rápido</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Contato</h4>
+                <p class="text-sm mb-2"><i class="fa-brands fa-whatsapp text-green-500 mr-2"></i> (11) 99999-9999</p>
+                <p class="text-sm"><i class="fa-solid fa-envelope mr-2"></i> contato@sushiexpress.com</p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+            &copy; 2026 Sushi Express. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- Overlay do Carrinho (Fundo escuro) -->
+    <div id="cart-overlay" class="overlay fixed inset-0 bg-black bg-opacity-60 z-40" onclick="toggleCart()"></div>
+
+    <!-- Carrinho Lateral (Sidebar) -->
+    <div id="cart-sidebar" class="cart-slide-in fixed top-0 right-0 h-full w-full sm:w-96 bg-white z-50 shadow-2xl flex flex-col">
+        <!-- Header do Carrinho -->
+        <div class="bg-sushi-dark text-white p-4 flex justify-between items-center">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+                <i class="fa-solid fa-cart-shopping"></i> Seu Pedido
+            </h2>
+            <button onclick="toggleCart()" class="text-gray-300 hover:text-white text-2xl leading-none">&times;</button>
+        </div>
+
+        <!-- Itens do Carrinho -->
+        <div id="cart-items" class="flex-grow overflow-y-auto p-4 flex flex-col gap-4">
+            <!-- Itens serão renderizados aqui pelo JS -->
+            <div class="text-center text-gray-500 mt-10" id="empty-cart-msg">
+                <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-gray-300"></i>
+                <p>Seu carrinho está vazio.</p>
+            </div>
+        </div>
+
+        <!-- Footer do Carrinho (Total e Botão) -->
+        <div class="border-t border-gray-200 p-4 bg-gray-50">
+            <div class="flex justify-between items-center mb-4 text-lg font-bold text-sushi-dark">
+                <span>Total:</span>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-sushi-red hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-colors flex justify-center items-center gap-2 shadow-md">
+                Finalizar Pedido <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
